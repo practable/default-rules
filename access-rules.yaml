@@ -1,39 +1,11 @@
-- id: 'ory:kratos-accounts:anonymous'
-  upstream:
-    preserve_host: true
-    url: 'http://vue-acc-service.default.svc.cluster.local:8080'
-  match:
-    url: 'https://core.prac.io/accounts<.*>'
-    methods:
-      - GET
-  authenticators:
-    - handler: anonymous
-  authorizer:
-    handler: allow
-  mutators:
-    - handler: noop
-- id: 'ory:kratos-book:protected'
-  upstream:
-    preserve_host: true
-    url: 'http://book-services.default.svc.cluster.local:80'
-  match:
-    url: 'https://core.prac.io/book/<(?!api/).*>'
-    methods:
-      - GET
-  authenticators:
-    - handler: anonymous
-  authorizer:
-    handler: allow
-  mutators:
-    - handler: noop
-- id: 'ory:kratos-book-api:protected'
+- id: 'ory:kratos-book-api:anyone'
   upstream:
     preserve_host: true
     url: 'http://book-services.default.svc.cluster.local:4000'
   match:
-    url: 'https://core.prac.io/book/api/<.*>'
+    url: 'https://core.prac.io/book/api/v1/login'
     methods:
-      - GET
+      - POST
   authenticators:
     - handler: anonymous
   authorizer:
