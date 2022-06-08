@@ -1,10 +1,40 @@
+- id: 'ory:kratos-accounts-assets:anonymous'
+  upstream:
+    preserve_host: true
+    url: 'http://vue-acc-service.svc.default.cluster.local'
+    strip_path: ''
+  match:
+    url: 'https://core.prac.io/accounts/assets/<{**.css,**.js,**.png}>'
+    methods:
+      - GET
+  authenticators:
+    - handler: anonymous
+  authorizer:
+    handler: allow
+  mutators:
+    - handler: noop
+ - id: 'ory:kratos-accounts-root:anonymous'
+  upstream:
+    preserve_host: true
+    url: 'http://vue-acc-service.svc.default.cluster.local'
+    strip_path: ''
+  match:
+    url: 'https://core.prac.io/accounts/'
+    methods:
+      - GET
+  authenticators:
+    - handler: anonymous
+  authorizer:
+    handler: allow
+  mutators:
+    - handler: noop     
 - id: 'ory:kratos-accounts:anonymous'
   upstream:
     preserve_host: true
     url: 'http://vue-acc-service.svc.default.cluster.local'
     strip_path: ''
   match:
-    url: 'https://core.prac.io/accounts/<{registration,welcome,recovery,verification,login,assets,**.css,**.js,**.png}>'
+    url: 'https://core.prac.io/accounts/<{registration,welcome,recovery,verification,login,**.css,**.js,**.png}>'
     methods:
       - GET
   authenticators:
