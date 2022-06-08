@@ -3,7 +3,7 @@
     preserve_host: true
     url: 'http://vue-acc-service.default.svc.cluster.local:8080'
   match:
-    url: 'https://core.prac.io/<.*>'
+    url: 'https://core.prac.io/accounts<.*>'
     methods:
       - GET
   authenticators:
