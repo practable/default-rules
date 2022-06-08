@@ -1,40 +1,9 @@
-- id: 'ory:kratos-accounts-assets:anonymous'
-  upstream:
-    preserve_host: true
-    url: 'http://vue-acc-service.svc.default.cluster.local'
-    strip_path: ''
-  match:
-    url: 'https://core.prac.io/accounts/assets/<.*>'
-    methods:
-      - GET
-  authenticators:
-    - handler: anonymous
-  authorizer:
-    handler: allow
-  mutators:
-    - handler: noop
-- id: 'ory:kratos-accounts-root:anonymous'
-  upstream:
-    preserve_host: true
-    url: 'http://vue-acc-service.svc.default.cluster.local'
-    strip_path: ''
-  match:
-    url: 'https://core.prac.io/accounts/'
-    methods:
-      - GET
-  authenticators:
-    - handler: anonymous
-  authorizer:
-    handler: allow
-  mutators:
-    - handler: noop     
 - id: 'ory:kratos-accounts:anonymous'
   upstream:
     preserve_host: true
-    url: 'http://vue-acc-service.svc.default.cluster.local'
-    strip_path: ''
+    url: 'http://vue-acc-service.svc.default.cluster.local/accounts'
   match:
-    url: 'https://core.prac.io/accounts/<{registration,welcome,recovery,verification,login,**.css,**.js,**.png}>'
+    url: 'https://core.prac.io/accounts/<*>'
     methods:
       - GET
   authenticators:
@@ -43,22 +12,3 @@
     handler: allow
   mutators:
     - handler: noop
-- id: 'ory:kratos-accounts:protected'
-  upstream:
-    preserve_host: true
-    url: 'http://vue-acc-service.svc.default.cluster.local'
-    strip_path: ''
-  match:
-    url: 'https://core.prac.io/accounts/<{app,debug,dashboard,settings}{/,}>'
-    methods:
-      - GET
-  authenticators:
-    - handler: cookie_session
-  authorizer:
-    handler: allow
-  mutators:
-    - handler: id_token
-  errors:
-    - handler: redirect
-      config:
-        to: 'https://core.prac.io/proxy/accounts/login' 
