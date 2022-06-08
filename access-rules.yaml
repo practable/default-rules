@@ -7,7 +7,7 @@
     methods:
       - POST
   authenticators:
-    - handler: anonymous
+    - handler: cookie_session
   authorizer:
     handler: allow
   mutators:
