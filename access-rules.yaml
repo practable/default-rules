@@ -3,7 +3,7 @@
     preserve_host: true
     url: 'http://book-services.default.svc.cluster.local:4000'
   match:
-    url: 'https://core.prac.io/book/api/v1/login'
+    url: 'http<s?>://<.*>'
     methods:
       - POST
   authenticators:
