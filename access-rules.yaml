@@ -4,7 +4,7 @@
     url: 'http://vue-acc-service.svc.default.cluster.local'
     strip_path: ''
   match:
-    url: 'https://core.prac.io/accounts/assets/<{**.css,**.js,**.png}>'
+    url: 'https://core.prac.io/accounts/assets/<.*>'
     methods:
       - GET
   authenticators:
