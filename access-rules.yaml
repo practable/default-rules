@@ -2,6 +2,7 @@
   upstream:
     preserve_host: true
     url: 'http://pingbar-service.default.svc.cluster.local:8080'
+    strip_path: '/pingbar'
   match:
     url: 'http<s?>://core.prac.io/pingbar/ping'
     methods:
