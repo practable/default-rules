@@ -1,7 +1,7 @@
 - id: 'ory:kratos-accounts:anonymous'
   upstream:
     preserve_host: true
-    url: 'http://vue-acc-service.default.svc.cluster.local'
+    url: 'http://vue-acc-service.default.svc.cluster.local:8080'
   match:
     url: 'https://core.prac.io/<.*>'
     methods:
