@@ -13,3 +13,5 @@
     handler: allow
   mutators:
     - handler: noop
+  error:
+    - handler: redirect
