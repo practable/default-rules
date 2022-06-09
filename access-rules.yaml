@@ -1,10 +1,10 @@
-- id: 'ory:kratos-book-api:anyone'
+- id: 'ory:kratos-pingbar-api:protected'
   upstream:
     preserve_host: true
     url: 'http://pingbar-service.default.svc.cluster.local:8080'
     strip_path: '/pingbar'
   match:
-    url: 'http<s?>://core.prac.io/pingbar/ping'
+    url: 'http<s?>://core.prac.io/pingbar/<.*>'
     methods:
       - GET
   authenticators:
@@ -15,3 +15,5 @@
     - handler: noop
   error:
     - handler: redirect
+      config:
+        to: https://core.prac.io/accounts/login
